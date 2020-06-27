@@ -1,6 +1,5 @@
 package tests.data;
 
-import lombok.experimental.UtilityClass;
 import model.DataModelByName;
 import model.DataModelByPosition;
 
@@ -12,10 +11,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@UtilityClass
-public class DataUtils {
+final public class DataUtils {
 
-    public List<DataModelByPosition> buildDataModelByPosition() {
+    private DataUtils() {
+    }
+
+    static public List<DataModelByPosition> buildDataModelByPosition() {
         List<DataModelByPosition> data = new ArrayList<>();
 
         Instant instant;
@@ -52,7 +53,7 @@ public class DataUtils {
         return data;
     }
 
-    public List<DataModelByName> buildDataModelByName() {
+    static public List<DataModelByName> buildDataModelByName() {
         List<DataModelByName> data = new ArrayList<>();
 
         Instant instant;

@@ -23,7 +23,7 @@ public class TestByPosition {
         StringReader reader = new StringReader(FileUtils.readFile("inputReadByPosition.csv"));
 
         List<DataModelByPosition> expected = DataUtils.buildDataModelByPosition();
-        List<DataModelByPosition> actual = new CsvToBeanBuilder(reader).
+        List<DataModelByPosition> actual = new CsvToBeanBuilder<DataModelByPosition>(reader).
                 withType(DataModelByPosition.class).
                 build().parse();
 
@@ -36,7 +36,7 @@ public class TestByPosition {
         StringReader reader = new StringReader(FileUtils.readFile("inputReadByPositionWithHeader.csv"));
 
         List<DataModelByPosition> expected = DataUtils.buildDataModelByPosition();
-        List<DataModelByPosition> actual = new CsvToBeanBuilder(reader).
+        List<DataModelByPosition> actual = new CsvToBeanBuilder<DataModelByPosition>(reader).
                 withType(DataModelByPosition.class).
                 withSkipLines(1).
                 build().parse();
@@ -50,7 +50,7 @@ public class TestByPosition {
         StringReader reader = new StringReader(FileUtils.readFile("inputReadByPositionWithEmptyLines.csv"));
 
         List<DataModelByPosition> expected = DataUtils.buildDataModelByPosition();
-        List<DataModelByPosition> actual = new CsvToBeanBuilder(reader).
+        List<DataModelByPosition> actual = new CsvToBeanBuilder<DataModelByPosition>(reader).
                 withType(DataModelByPosition.class).
                 withIgnoreEmptyLine(true).
                 build().parse();
@@ -64,7 +64,7 @@ public class TestByPosition {
         StringReader reader = new StringReader(FileUtils.readFile("inputReadByPositionWithErrors.csv"));
 
         try {
-            new CsvToBeanBuilder(reader).
+            new CsvToBeanBuilder<DataModelByPosition>(reader).
                     withType(DataModelByPosition.class).
                     build().parse();
         } catch (Exception e) {
@@ -78,7 +78,7 @@ public class TestByPosition {
 
         StringReader reader = new StringReader(FileUtils.readFile("inputReadByPositionWithErrorsAndData.csv"));
 
-        CsvToBean<DataModelByPosition> csvToBean = new CsvToBeanBuilder(reader).
+        CsvToBean<DataModelByPosition> csvToBean = new CsvToBeanBuilder<DataModelByPosition>(reader).
                 withType(DataModelByPosition.class).
                 withThrowExceptions(false).
                 build();
@@ -94,7 +94,7 @@ public class TestByPosition {
         Assert.assertEquals(4, exception1.getLineNumber());
         Assert.assertEquals(" errorNoRequiredId 123.456 12-11-2020", String.join(" ", Arrays.asList(exception1.getLine())));
         CsvException exception2 = exceptions.get(1);
-        Assert.assertEquals(null, exception2.getMessage());
+        Assert.assertNull(exception2.getMessage());
         Assert.assertEquals(5, exception2.getLineNumber());
         Assert.assertEquals("5 dateError 1234.6789 2020/11/11", String.join(" ", Arrays.asList(exception2.getLine())));
 

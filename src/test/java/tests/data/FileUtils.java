@@ -1,16 +1,16 @@
 package tests.data;
 
-import lombok.experimental.UtilityClass;
-
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-@UtilityClass
-public class FileUtils {
+final public class FileUtils {
 
-    public String readFile(String fileName) {
+    private FileUtils() {
+    }
+
+    public static String readFile(String fileName) {
         try {
             Path resourceDirectory = Paths.get("src", "test", "resources");
             String absolutePath = resourceDirectory.toFile().getAbsolutePath();
