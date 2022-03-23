@@ -7,9 +7,6 @@ import java.nio.file.Paths;
 
 final public class FileUtils {
 
-    private FileUtils() {
-    }
-
     public static String readFile(String fileName) {
         try {
             Path resourceDirectory = Paths.get("src", "test", "resources");

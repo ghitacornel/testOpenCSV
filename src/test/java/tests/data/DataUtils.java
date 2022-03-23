@@ -13,9 +13,6 @@ import java.util.List;
 
 final public class DataUtils {
 
-    private DataUtils() {
-    }
-
     static public List<DataModelByPosition> buildDataModelByPosition() {
         List<DataModelByPosition> data = new ArrayList<>();
 
